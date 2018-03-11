@@ -4,6 +4,7 @@ import { AppRegistry } from 'react-native-web';
 import './index.css';
 import App from './App';
 import 'codemirror/theme/oceanic-next.css';
+import 'codemirror/theme/panda-syntax.css';
 import 'codemirror/lib/codemirror.css';
 import 'codemirror/mode/javascript/javascript';
 import 'codemirror/mode/jsx/jsx';

@@ -113,7 +113,28 @@ class App extends Component<{}, State> {
   transform = () => {
     try {
       const transformed = transform(this.state.code, {
-        presets: this.state.selectedPresets.map(preset => presetsMap[preset]),
+        presets: this.state.selectedPresets.map(
+          preset =>
+            preset === '@babel/preset-env'
+              ? [
+                  presetsMap[preset],
+                  {
+                    debug: true,
+                    useBuiltIns: 'usage',
+                    targets: {
+                      node: '8.9',
+                      browsers: [
+                        'chrome 50',
+                        'firefox 52',
+                        'ie 11',
+                        'edge 15',
+                        'safari 9',
+                      ],
+                    },
+                  },
+                ]
+              : presetsMap[preset],
+        ),
         plugins: this.state.selectedPlugins.map(plugins => pluginsMap[plugins]),
       });
       this.setTransformedCode(transformed.code);
